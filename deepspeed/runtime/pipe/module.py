@@ -351,11 +351,11 @@ class PipelineModule(nn.Module):
                 if not isinstance(x, tuple):
                     x = (x, )
 
-                if self._is_checkpointable(funcs):
-                    x = self.activation_checkpoint_func(
-                        exec_range_func(start_idx,
-                                        end_idx),
-                        *x)
+                
+                x = self.activation_checkpoint_func(
+                    exec_range_func(start_idx,
+                                    end_idx),
+                    *x)
                 else:
                     x = exec_range_func(start_idx, end_idx)(*x)
         return x
